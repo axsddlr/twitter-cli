@@ -38,6 +38,7 @@ A terminal-first CLI for Twitter/X: read timelines, bookmarks, and user profiles
 - Post: create new tweets and replies, with optional image attachments (up to 4)
 - Long-form posts: Premium accounts automatically route text above the standard 280 weighted-character limit through X long-form posting
 - Quote: quote-tweet with optional images
+- Articles: publish X Articles from Markdown files
 - Delete: remove your own tweets
 - Like / Unlike: manage tweet likes
 - Retweet / Unretweet: manage retweets
@@ -145,6 +146,8 @@ twitter article 1234567890
 twitter article https://x.com/user/article/1234567890 --json
 twitter article 1234567890 --markdown
 twitter article 1234567890 --output article.md
+twitter article-publish draft.md --title "Article title"
+twitter article-publish draft.md --title "Article title" --draft
 
 # List timeline
 twitter list 1539453138322673664
@@ -416,6 +419,7 @@ git clone git@github.com:jackwener/twitter-cli.git .agents/skills/twitter-cli
 - 发推：发布新推文和回复，支持附带图片（最多 4 张，支持 JPEG/PNG/GIF/WebP）
 - 长文：Premium 账号在文本超过标准 280 加权字符限制时自动使用 X 长文发布
 - 引用推文：带评论的转发，也支持附带图片
+- 文章：从 Markdown 文件发布 X Article
 - 删除：删除自己的推文
 - 点赞 / 取消点赞
 - 转推 / 取消转推
@@ -488,6 +492,8 @@ twitter article 1234567890
 twitter article https://x.com/user/article/1234567890 --json
 twitter article 1234567890 --markdown
 twitter article 1234567890 --output article.md
+twitter article-publish draft.md --title "文章标题"
+twitter article-publish draft.md --title "文章标题" --draft
 
 # 列表时间线
 twitter list 1539453138322673664

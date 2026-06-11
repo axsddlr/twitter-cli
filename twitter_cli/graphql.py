@@ -53,6 +53,10 @@ FALLBACK_QUERY_IDS = {
     "TweetResultByRestId": "7xflPyRiUxGVbJd4uWmbfg",
     "BookmarkFoldersSlice": "i78YDd0Tza-dV4SYs58kRg",
     "BookmarkFolderTimeline": "hNY7X2xE2N7HVF6Qb_mu6w",
+    "ArticleEntityDraftCreate": "g1l5N8BxGewYuCy5USe_bQ",
+    "ArticleEntityUpdateTitle": "x75E2ABzm8_mGTg1bz8hcA",
+    "ArticleEntityUpdateContent": "M7N2FrPrlOmu-YrVIBxFnQ",
+    "ArticleEntityPublish": "m4SHicYMoWO_qkLvjhDk7Q",
 }
 
 # ── Default feature flags ────────────────────────────────────────────────
@@ -89,6 +93,15 @@ NOTE_TWEET_FEATURES = {
     "longform_notetweets_richtext_consumption_enabled": True,
     "articles_preview_enabled": True,
     "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": True,
+}
+
+ARTICLE_FEATURES = {
+    "profile_label_improvements_pcf_label_in_post_enabled": True,
+    "responsive_web_profile_redirect_enabled": False,
+    "rweb_tipjar_consumption_enabled": False,
+    "verified_phone_label_enabled": False,
+    "responsive_web_graphql_skip_user_profile_image_extensions_enabled": False,
+    "responsive_web_graphql_timeline_navigation_enabled": True,
 }
 
 # Module-level caches (not thread-safe — CLI is single-threaded)
