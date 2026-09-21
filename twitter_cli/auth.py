@@ -201,12 +201,13 @@ _CHROMIUM_BASE_DIRS: Dict[str, str] = {
     "arc": os.path.join("Arc", "User Data"),
     "edge": "Microsoft Edge",
     "brave": os.path.join("BraveSoftware", "Brave-Browser"),
+    "vivaldi": "Vivaldi",
 }
 
 _CUSTOM_CHROMIUM_BROWSER = "custom-chromium"
 
 # Default browser order for cookie extraction
-_DEFAULT_BROWSER_ORDER = ["arc", "chrome", "edge", "firefox", "brave"]
+_DEFAULT_BROWSER_ORDER = ["arc", "chrome", "edge", "firefox", "brave", "vivaldi"]
 _SUPPORTED_BROWSERS = set(_DEFAULT_BROWSER_ORDER) | {_CUSTOM_CHROMIUM_BROWSER}
 
 
@@ -289,11 +290,15 @@ def _iter_chrome_cookie_files(browser_name: str) -> List[str]:
         elif sys.platform == "win32":
             if browser_name == "edge":
                 root = os.path.join(os.environ.get("LOCALAPPDATA", ""), "Microsoft", "Edge", "User Data")
+            elif browser_name == "vivaldi":
+                root = os.path.join(os.environ.get("LOCALAPPDATA", ""), "Vivaldi", "User Data")
             else:
                 root = os.path.join(os.environ.get("LOCALAPPDATA", ""), base_dir)
         else:
             if browser_name == "edge":
                 root = os.path.join(os.path.expanduser("~"), ".config", "microsoft-edge")
+            elif browser_name == "vivaldi":
+                root = os.path.join(os.path.expanduser("~"), ".config", "vivaldi")
             else:
                 root = os.path.join(os.path.expanduser("~"), ".config", base_dir)
 
@@ -444,6 +449,7 @@ CHROMIUM_BASE_DIRS = {
     "arc": os.path.join("Arc", "User Data"),
     "edge": os.path.join("Microsoft Edge"),
     "brave": os.path.join("BraveSoftware", "Brave-Browser"),
+    "vivaldi": "Vivaldi",
 }
 CUSTOM_CHROMIUM_BROWSER = "custom-chromium"
 
@@ -495,11 +501,15 @@ def iter_cookie_files(browser_name):
         elif sys.platform == "win32":
             if browser_name == "edge":
                 root = os.path.join(os.environ.get("LOCALAPPDATA", ""), "Microsoft", "Edge", "User Data")
+            elif browser_name == "vivaldi":
+                root = os.path.join(os.environ.get("LOCALAPPDATA", ""), "Vivaldi", "User Data")
             else:
                 root = os.path.join(os.environ.get("LOCALAPPDATA", ""), base_dir)
         else:
             if browser_name == "edge":
                 root = os.path.join(os.path.expanduser("~"), ".config", "microsoft-edge")
+            elif browser_name == "vivaldi":
+                root = os.path.join(os.path.expanduser("~"), ".config", "vivaldi")
             else:
                 root = os.path.join(os.path.expanduser("~"), ".config", base_dir)
     if not os.path.isdir(root):
@@ -549,7 +559,7 @@ def extract_from_jar(jar, name, profile=""):
         return result
     return None
 
-DEFAULT_ORDER = ["arc", "chrome", "edge", "firefox", "brave"]
+DEFAULT_ORDER = ["arc", "chrome", "edge", "firefox", "brave", "vivaldi"]
 SUPPORTED_BROWSERS = set(DEFAULT_ORDER) | {CUSTOM_CHROMIUM_BROWSER}
 browser_order = list(DEFAULT_ORDER)
 if custom_chromium_user_data_dir():
@@ -742,7 +752,7 @@ def get_cookies() -> Dict[str, str]:
             lines.extend("  " + line for line in hint.splitlines())
             lines.append("")
         lines.append("Option 1: Set TWITTER_AUTH_TOKEN and TWITTER_CT0 environment variables")
-        lines.append("Option 2: Make sure you are logged into x.com in your browser (Arc/Chrome/Edge/Firefox/Brave)")
+        lines.append("Option 2: Make sure you are logged into x.com in your browser (Arc/Chrome/Edge/Firefox/Brave/Vivaldi)")
         lines.append(
             "Option 3: For a custom Chromium profile, set TWITTER_CHROMIUM_USER_DATA_DIR "
             "to its --user-data-dir"

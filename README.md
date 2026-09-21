@@ -190,7 +190,7 @@ twitter follow elonmusk --json
 twitter-cli uses this auth priority:
 
 1. **Environment variables**: `TWITTER_AUTH_TOKEN` + `TWITTER_CT0`
-2. **Browser cookies** (recommended): auto-extract from Arc/Chrome/Edge/Firefox/Brave
+2. **Browser cookies** (recommended): auto-extract from Arc/Chrome/Edge/Firefox/Brave/Vivaldi
 
 Browser extraction is recommended — it forwards ALL Twitter cookies (not just `auth_token` + `ct0`) and aligns request headers with your local runtime, which is closer to normal browser traffic than minimal cookie auth.
 
@@ -203,7 +203,7 @@ TWITTER_CHROME_PROFILE="Profile 2" twitter feed
 **Browser priority:** If you have multiple browsers, set `TWITTER_BROWSER` to try a specific browser first:
 
 ```bash
-TWITTER_BROWSER=chrome twitter feed    # Supported: arc, chrome, edge, firefox, brave
+TWITTER_BROWSER=chrome twitter feed    # Supported: arc, chrome, edge, firefox, brave, vivaldi
 ```
 
 **Custom Chromium profile:** For ungoogled-chromium or another Chromium installation
@@ -305,7 +305,7 @@ Mode behavior:
 ### Troubleshooting
 
 - `No Twitter cookies found`
-  - Ensure you are logged in to `x.com` in a supported browser (Arc/Chrome/Edge/Firefox/Brave).
+  - Ensure you are logged in to `x.com` in a supported browser (Arc/Chrome/Edge/Firefox/Brave/Vivaldi).
   - For a custom Chromium profile, set `TWITTER_CHROMIUM_USER_DATA_DIR` to its `--user-data-dir`.
   - Or set `TWITTER_AUTH_TOKEN` and `TWITTER_CT0` manually.
   - Run with `-v` to see browser extraction diagnostics.
@@ -536,7 +536,7 @@ twitter follow elonmusk --json
 认证优先级：
 
 1. **环境变量**：`TWITTER_AUTH_TOKEN` + `TWITTER_CT0`
-2. **浏览器提取**（推荐）：Arc/Chrome/Edge/Firefox/Brave 全量 Cookie 提取
+2. **浏览器提取**（推荐）：Arc/Chrome/Edge/Firefox/Brave/Vivaldi 全量 Cookie 提取
 
 推荐使用浏览器提取方式，会转发所有 Twitter Cookie，并按本机运行环境生成语言和平台请求头；它比仅发送 `auth_token` + `ct0` 更接近普通浏览器流量，但不等于完整浏览器自动化。
 
@@ -549,7 +549,7 @@ TWITTER_CHROME_PROFILE="Profile 2" twitter feed
 **浏览器优先级**：如果有多个浏览器，可通过 `TWITTER_BROWSER` 指定优先尝试的浏览器：
 
 ```bash
-TWITTER_BROWSER=chrome twitter feed    # 支持: arc, chrome, edge, firefox, brave
+TWITTER_BROWSER=chrome twitter feed    # 支持: arc, chrome, edge, firefox, brave, vivaldi
 ```
 
 **自定义 Chromium Profile**：如果使用 ungoogled-chromium，或通过
@@ -600,7 +600,7 @@ score = likes_w * likes
 
 ### 常见问题
 
-- 报错 `No Twitter cookies found`：请先登录 `x.com`，并确认浏览器为 Arc/Chrome/Edge/Firefox/Brave 之一；自定义 Chromium 可将 `TWITTER_CHROMIUM_USER_DATA_DIR` 指向 `--user-data-dir`，或手动设置认证环境变量。
+- 报错 `No Twitter cookies found`：请先登录 `x.com`，并确认浏览器为 Arc/Chrome/Edge/Firefox/Brave/Vivaldi 之一；自定义 Chromium 可将 `TWITTER_CHROMIUM_USER_DATA_DIR` 指向 `--user-data-dir`，或手动设置认证环境变量。
 - 如需查看浏览器提取细节，可加 `-v` 打开诊断日志。
 - 报错 `Cookie expired or invalid`：Cookie 过期，重新登录后重试。
 - 报错 `Unable to get key for cookie decryption`（macOS Keychain 问题）：
