@@ -1,4 +1,4 @@
-﻿"""Video/image media upload: chunking, size and type guards, STATUS polling.
+"""Video/image media upload: chunking, size and type guards, STATUS polling.
 
 `upload_media` drives X's chunked INIT -> APPEND -> FINALIZE (-> STATUS) flow.
 It was previously exercised only by the image path, so the video branch (new in
