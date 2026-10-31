@@ -180,6 +180,24 @@ def _created_tweet_result(data):
     )
 
 
+def _processing_info(response):
+    # type: (Any) -> Optional[Dict[str, Any]]
+    """Return ``processing_info`` from a media FINALIZE/STATUS response.
+
+    Videos are processed asynchronously, so FINALIZE and STATUS may or may not
+    carry processing metadata. Non-JSON bodies are treated as "no information"
+    rather than raising a JSONDecodeError out of the upload path.
+    """
+    try:
+        payload = json.loads(getattr(response, "text", "") or "")
+    except (json.JSONDecodeError, ValueError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    info = payload.get("processing_info")
+    return info if isinstance(info, dict) else None
+
+
 def _coerce_string(value):
     # type: (Any) -> str
     if isinstance(value, str):
@@ -801,6 +819,7 @@ class TwitterClient:
 
     # Supported image MIME types and max file size (5 MB)
     _SUPPORTED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/gif", "image/webp"}
+    _SUPPORTED_VIDEO_TYPES = {"video/mp4", "video/quicktime", "video/webm"}
     _MAX_IMAGE_SIZE = 5 * 1024 * 1024  # 5 MB
     _MAX_VIDEO_SIZE = 512 * 1024 * 1024  # 512 MB (X hard cap for tweet_video)
     _VIDEO_CHUNK_SIZE = 4 * 1024 * 1024  # 4 MB per APPEND segment
@@ -836,6 +855,10 @@ class TwitterClient:
                 raise MediaUploadError(
                     "File too large: %.1f MB (max %.0f MB)"
                     % (file_size / (1024 * 1024), self._MAX_VIDEO_SIZE / (1024 * 1024))
+                )
+            if media_type not in self._SUPPORTED_VIDEO_TYPES:
+                raise MediaUploadError(
+                    "Unsupported video format: %s (supported: mp4, mov, webm)" % media_type
                 )
             media_category = "tweet_video"
         else:
@@ -920,7 +943,7 @@ class TwitterClient:
 
         # ── STATUS (videos only) ─────────────────────────────────────
         if is_video:
-            info = json.loads(resp.text).get("processing_info")
+            info = _processing_info(resp)
             deadline = time.time() + self._VIDEO_PROCESS_TIMEOUT
             while info and info.get("state") not in (None, "succeeded"):
                 state = info.get("state")
@@ -940,7 +963,7 @@ class TwitterClient:
                 }, timeout=30)
                 if resp.status_code >= 400:
                     raise MediaUploadError("STATUS failed (HTTP %d): %s" % (resp.status_code, resp.text[:300]))
-                info = json.loads(resp.text).get("processing_info")
+                info = _processing_info(resp)
             logger.info("Media STATUS: video processing complete")
 
         return media_id
