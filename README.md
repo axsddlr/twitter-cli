@@ -16,10 +16,14 @@
 > Install the working build with
 > `uv tool install --from git+https://github.com/axsddlr/twitter-cli@main twitter-cli`.
 > Status: `ruff` clean, `mypy` clean, 329 tests passing on Linux.
+>
+> *The CI badge is kept deliberately. Upstream removed its own because its runs
+> were hanging for 30 days; this fork's workflow has a bounded timeout and its
+> runs are green, so the badge is accurate here.*
 
 [![CI](https://github.com/axsddlr/twitter-cli/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/axsddlr/twitter-cli/actions/workflows/ci.yml)
 [![PyPI version](https://badge.fury.io/py/twitter-cli.svg)](https://pypi.org/project/twitter-cli/)
-[![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue.svg)](https://pypi.org/project/twitter-cli/)
+[![Python versions](https://img.shields.io/pypi/pyversions/twitter-cli.svg)](https://pypi.org/project/twitter-cli/)
 
 A terminal-first CLI for Twitter/X: read timelines, bookmarks, and user profiles without API keys.
 
