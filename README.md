@@ -1,6 +1,23 @@
 # twitter-cli
 
-[![CI](https://github.com/jackwener/twitter-cli/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jackwener/twitter-cli/actions/workflows/ci.yml)
+> **Integration build — `axsddlr/twitter-cli`.** This fork's `main` is upstream
+> `public-clis/twitter-cli` plus the community fixes that are still open
+> upstream, stacked and conflict-resolved. It exists because upstream has had no
+> commits since 2026-05-07 and X's September 2026 web rebuild broke the
+> `x-client-transaction-id` header, so `search`, `followers`, `following` and
+> `likes` 404 on the released version. Every commit keeps its original author.
+>
+> Included: #93 (ClientTransaction bootstrap), #77, #75, #76, #87, #57, #64,
+> #70, #63, #65, #92, #96, plus owner-only cache permissions and a repaired CI
+> workflow. All of these are also proposed upstream; see
+> [PR #102](https://github.com/public-clis/twitter-cli/pull/102) and the
+> [triage notes](https://github.com/public-clis/twitter-cli/pull/93#issuecomment-6540997400).
+>
+> Install the working build with
+> `uv tool install --from git+https://github.com/axsddlr/twitter-cli@main twitter-cli`.
+> Status: `ruff` clean, `mypy` clean, 329 tests passing on Linux.
+
+[![CI](https://github.com/axsddlr/twitter-cli/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/axsddlr/twitter-cli/actions/workflows/ci.yml)
 [![PyPI version](https://badge.fury.io/py/twitter-cli.svg)](https://pypi.org/project/twitter-cli/)
 [![Python](https://img.shields.io/badge/python-%3E%3D3.10-blue.svg)](https://pypi.org/project/twitter-cli/)
 
