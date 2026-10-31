@@ -1,4 +1,4 @@
-﻿"""Owner-only permissions for cache artefacts.
+"""Owner-only permissions for cache artefacts.
 
 The ClientTransaction cache stores the full ``x.com/home`` HTML, which embeds the
 session's live ``auth_token``/``ct0``; the index cache stores tweet text the user
